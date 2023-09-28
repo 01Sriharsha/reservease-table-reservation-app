@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth !important;
+}
+
+.restaurant-bg {
+    background-image: url('/src/assets/bg.jpg') !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.signup-bg {
+    background-image: url('/src/assets/signup-bg.jpg') !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-bottom: 60px;
+}
+
+.tracking-in-expand {
+    animation: tracking-in-expand 1.5s cubic-bezier(.215, .61, .355, 1.000) both
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -.5em;
+        opacity: 0
+    }
+
+    40% {
+        opacity: .6
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+.bg-business {
+    background: linear-gradient(135deg, #da3743 0%, #dddb5e 100%);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}

@@ -1,0 +1,190 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+//vercel postgres
+// datasource db {
+//   provider = "postgresql"
+//   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+//   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+// }
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PRICE {
+  CHEAP
+  REGULAR
+  EXPENSIVE
+}
+
+enum ROLE {
+  CUSTOMER
+  OWNER
+  ADMIN
+}
+
+enum STATUS {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      ROLE     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id              Int              @id @default(autoincrement())
+  first_name      String
+  last_name       String
+  email           String           @unique
+  password        String
+  phone           String
+  city            String
+  image           String           @default("")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  reviews         Review[]
+  bookings        Booking[]
+  role            ROLE             @default(CUSTOMER)
+  businessRequest BusinessRequest?
+  restaurant      Restaurant?
+}
+
+model Review {
+  id            Int        @id @default(autoincrement())
+  message       String
+  rating        Float
+  dine_date     String     @default("")
+  reply         String     @default("")
+  user_id       Int
+  restaurant_id Int
+  user          User       @relation(fields: [user_id], references: [id])
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model Restaurant {
+  id          Int       @id @default(autoincrement())
+  name        String
+  main_image  String
+  description String
+  images      String[]
+  open_time   String
+  close_time  String
+  phone       String    @default("")
+  address     String    @default("")
+  slug        String    @unique
+  price       PRICE
+  gst         String    @default("")
+  publish     Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  //relations
+  location_id Int
+  location    Location  @relation(fields: [location_id], references: [id])
+  cuisine_id  Int
+  cuisine     Cuisine   @relation(fields: [cuisine_id], references: [id])
+  items       Item[]
+  reviews     Review[]
+  bookings    Booking[]
+  tables      Table[]
+  ownerId     Int       @unique @default(dbgenerated())
+  owner       User      @relation(fields: [ownerId], references: [id])
+}
+
+model Item {
+  id            Int        @id @default(autoincrement())
+  name          String
+  price         String
+  description   String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  restaurant_id Int
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+}
+
+model Location {
+  id          Int          @id @default(autoincrement())
+  name        String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  restaurants Restaurant[]
+}
+
+model Cuisine {
+  id          Int          @id @default(autoincrement())
+  name        String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  restaurants Restaurant[]
+}
+
+model Booking {
+  id               Int               @id @default(autoincrement())
+  number_of_people Int
+  booking_time     DateTime
+  occasion         String
+  request          String
+  reference_number String            @default("")
+  isDeclined       Boolean           @default(false)
+  decline_message  String            @default("")
+  created_At       DateTime          @default(now())
+  updated_At       DateTime          @updatedAt
+  restaurant_id    Int
+  restaurant       Restaurant        @relation(fields: [restaurant_id], references: [id])
+  tables           BookingsOnTable[]
+  User             User?             @relation(fields: [userId], references: [id])
+  userId           Int?
+}
+
+model Table {
+  id            Int               @id @default(autoincrement())
+  seats         Int
+  created_At    DateTime          @default(now())
+  updated_At    DateTime          @updatedAt
+  restaurant_id Int
+  restaurant    Restaurant        @relation(fields: [restaurant_id], references: [id])
+  bookings      BookingsOnTable[]
+}
+
+model BookingsOnTable {
+  booking_id Int
+  booking    Booking  @relation(fields: [booking_id], references: [id])
+  table_id   Int
+  tables     Table    @relation(fields: [table_id], references: [id])
+  created_At DateTime @default(now())
+  updated_At DateTime @updatedAt
+
+  @@id([booking_id, table_id]) //for many-to-many relationship
+}
+
+model BusinessRequest {
+  request_id         Int    @id @default(autoincrement())
+  restaurant_name    String
+  restaurant_city    String @default("")
+  restaurant_address String @default("")
+  restaurant_phone   String @default("")
+  status             STATUS @default(PENDING)
+  restaurant_gst     String
+  userId             Int    @unique
+  user               User   @relation(fields: [userId], references: [id])
+}

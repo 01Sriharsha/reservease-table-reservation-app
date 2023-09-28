@@ -1,0 +1,49 @@
+{
+  "name": "reservease",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.3.1",
+    "@types/bcrypt": "^5.0.0",
+    "@types/js-cookie": "^3.0.3",
+    "@types/node": "18.16.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/validator": "^13.7.17",
+    "@vercel/blob": "^0.13.0",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "cookie": "^0.5.0",
+    "date-fns": "^2.30.0",
+    "eslint": "8.39.0",
+    "eslint-config-next": "13.3.4",
+    "jose": "^4.14.4",
+    "next": "^13.5.3",
+    "next-cookie": "^2.8.0",
+    "postcss": "8.4.23",
+    "react": "18.2.0",
+    "react-datepicker": "^4.14.1",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.11.0",
+    "react-spinners": "^0.13.8",
+    "react-toastify": "^9.1.2",
+    "sharp": "^0.32.6",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.5.2",
+    "@types/react-datepicker": "^4.11.2",
+    "@types/uuid": "^9.0.4",
+    "prisma": "^5.3.1"
+  }
+}
