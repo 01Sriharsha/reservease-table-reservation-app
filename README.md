@@ -36,7 +36,7 @@ Secure user authentication system for all user roles.
 
 ### Database Integration
 
-- [PostgreSQL](https://www.postgresql.org/): An open-source relational database system.
+- [NeonDB](https://neondb.io/): A cloud-native, serverless database platform.
 - [Prisma](https://www.prisma.io/): A modern database toolkit for TypeScript and Node.js.
 
 ## Technologies Used
@@ -45,9 +45,10 @@ DineTable is built using the following technologies:
 
 - [Next.js 13](https://nextjs.org/): A React framework for server-rendered React applications.
 - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
-- [PostgreSQL](https://www.postgresql.org/): An open-source relational database system.
+- [NeonDB](https://neondb.io/): A cloud-native, serverless database platform.
 - [Prisma](https://www.prisma.io/): A modern database toolkit for TypeScript and Node.js.
 - [Vercel](https://vercel.com/): A cloud platform for serverless deployment.
+- [Tailwind CSS](https://tailwindcss.com/), a popular utility-first CSS framework, for styling. Tailwind CSS allows for rapid development and customization of the application's user interface.
 
 ## Installation
 
@@ -134,7 +135,6 @@ DineTable is designed to serve three primary user roles: Customers, Restaurant O
    - Admins can manage restaurant listings.
    - Add, edit, or remove restaurant listings from the platform.
 
-
 ## Deployment
 
-DineTable is deployed on Vercel and uses Vercel's PostgreSQL database for production.
+DineTable is deployed on Vercel and uses NeonDB's Postgresql database for production.
