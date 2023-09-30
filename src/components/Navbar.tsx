@@ -25,27 +25,27 @@ export default function Navbar() {
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex gap-5 items-center">
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             <Image
               src={Logo}
               alt="logo"
               width={1000}
               height={1000}
-              className="w-7 h-7"
+              className="w-7 h-7 rounded-full"
             />
             <Link href="/" className="text-2xl text-gray-700 font-bold">
               ReservEase
             </Link>
           </div>
           {(!data || data?.role === ROLE.CUSTOMER) && (
-            <Link href="/business" className="text-slate-700 font-medium">
+            <Link href="/business" className="text-slate-700 font-medium mt-1">
               Business
             </Link>
           )}
         </div>
         <div className="flex gap-4 items-center">
           {loading ? (
-            <div className="w-40 flex items-center justify-center mt-2">
+            <div className="flex items-center justify-center md:mr-4">
               <ClipLoader color="black" size={"1.5rem"} />
             </div>
           ) : authenticated ? (

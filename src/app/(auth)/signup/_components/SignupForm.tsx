@@ -135,7 +135,7 @@ export default function SignupForm({ locations }: { locations: Location[] }) {
           )}
           <div className="flex gap-2 items-center">
             <input type="checkbox" onChange={() => setOtherCity(!otherCity)} />
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-1">
               check here to enter your city
             </p>
           </div>
