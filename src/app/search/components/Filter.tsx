@@ -27,7 +27,7 @@ export default function Filter({
     <div className="px-4 bg-white">
       <div>
         <h3 className="font-semibold text-gray-500 text-lg">Region</h3>
-        <div className="my-2 ml-4 capitalize flex flex-col">
+        <div className="my-2 ml-4 capitalize flex flex-col md:h-[40vh] md:overflow-y-scroll">
           {locations.map((location) => (
             <Link
               href={{
@@ -49,7 +49,7 @@ export default function Filter({
 
       <div className="my-3">
         <h3 className="font-semibold text-gray-500 text-lg">Cuisine</h3>
-        <div className="my-2 ml-4 capitalize flex flex-col">
+        <div className="my-2 ml-4 capitalize flex flex-col md:h-[40vh] md:overflow-y-scroll">
           {cuisines.map((cuisine) => (
             <Link
               href={{

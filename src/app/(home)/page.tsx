@@ -5,14 +5,16 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 export default async function Home() {
-
   const restaurantsPromise = await prisma.restaurant.findMany({
     include: { location: true, reviews: true, cuisine: true },
   });
 
   const locationsPromise = await prisma.location.findMany();
 
-  const [restaurants , locations] = await Promise.all([restaurantsPromise , locationsPromise])
+  const [restaurants, locations] = await Promise.all([
+    restaurantsPromise,
+    locationsPromise,
+  ]);
 
   return (
     <>
@@ -33,15 +35,17 @@ export default async function Home() {
         </h2>
         <div className="my-8 grid grid-cols-1 sm:grid-cols-2 mdx:grid-cols-3 gap-4 place-items-center">
           {restaurants.length !== 0 ? (
-            restaurants.map((restaurant) => (
-              <Link
-                href={`/restaurant/${restaurant.slug}`}
-                key={restaurant.id}
-                className="hover:scale-105 transition-all duration-300 ease-linear"
-              >
-                <RestaurantCard restaurant={restaurant} />
-              </Link>
-            ))
+            restaurants
+              .filter((restaurant) => restaurant.publish)
+              .map((restaurant) => (
+                <Link
+                  href={`/restaurant/${restaurant.slug}`}
+                  key={restaurant.id}
+                  className="hover:scale-105 transition-all duration-300 ease-linear"
+                >
+                  <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+                </Link>
+              ))
           ) : (
             <div>No Restaurants Available!!</div>
           )}

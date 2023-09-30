@@ -24,7 +24,9 @@ export default async function ManagePage({ params }: Params) {
       main_image: true,
       address: true,
       phone: true,
+      publish : true,
       price: true,
+      cuisineStyle : true
     },
   });
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { GrGallery  } from "react-icons/gr";
+import { GrGallery, GrRestaurant  } from "react-icons/gr";
 import { GiTable  } from "react-icons/gi";
 import { RiReservedFill  } from "react-icons/ri";
 import { ImProfile } from "react-icons/im";
@@ -32,6 +32,11 @@ export default function useRoutes() {
           label: "Users",
           href: `/admin/manage/users`,
           icon: FaUsersGear,
+        },
+        {
+          label: "Restaurants",
+          href: `/admin/manage/restaurants`,
+          icon: GrRestaurant,
         },
         {
           label: "Requests",

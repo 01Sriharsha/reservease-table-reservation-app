@@ -20,7 +20,7 @@ export default async function AdminManagePage() {
         <div className="grid grid-cols-2 gap-4">
           {/* Restaurant List */}
           <div className="bg-white p-4 rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-4">Restaurant List</h2>
+            <h2 className="text-xl font-semibold mb-4 text-red-300">Restaurant List</h2>
             <div className="p-2">
               {restaurants.map((restaurant) => (
                 <>
@@ -39,7 +39,7 @@ export default async function AdminManagePage() {
 
           {/* Users List */}
           <div className="bg-white p-4 rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-4">Users List</h2>
+            <h2 className="text-xl font-semibold mb-4 text-red-300">Users List</h2>
             <div className="p-2">
               {users.map((user, i) => (
                 <p key={i} className="py-2 capitalize flex items-center gap-1">

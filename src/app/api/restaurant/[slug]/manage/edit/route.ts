@@ -1,6 +1,7 @@
 import prisma from "@/lib/PrismaClient";
 import GenerateTimeStamp from "@/utils/GenerateTimeStamp";
 import validateObject from "@/utils/validateObject";
+import { PRICE } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 interface RestuarantData {
@@ -13,6 +14,8 @@ interface RestuarantData {
   close_time: string;
   cuisine: string;
   main_image: string;
+  cuisineStyle: string;
+  price: PRICE;
 }
 
 export async function POST(
@@ -44,6 +47,8 @@ export async function POST(
     close_time,
     cuisine: cuisine_name,
     main_image,
+    cuisineStyle,
+    price,
   } = body;
 
   const obj = validateObject(body);
@@ -56,15 +61,8 @@ export async function POST(
   }
 
   //10:30 to 10:30:00.000Z
-  const openTime = timestamps.filter((t) => {
-    console.log(t.label);
-    console.log(open_time);
-
-    return t.label === open_time;
-  })[0].value;
+  const openTime = timestamps.filter((t) => t.label === open_time)[0].value;
   const closeTime = timestamps.filter((t) => t.label === close_time)[0].value;
-
-  console.log(openTime, " ", closeTime);
 
   const locationPromise = prisma.location.findFirst({
     where: { name: city },
@@ -99,6 +97,8 @@ export async function POST(
       close_time: `${closeTime}:00.000Z`,
       address: address.toLowerCase(),
       phone: phone.toLowerCase(),
+      cuisineStyle: cuisineStyle.toLowerCase(),
+      price,
       main_image,
       location_id: location.id,
       cuisine_id: cuisine.id,
@@ -111,6 +111,7 @@ export async function POST(
       open_time: true,
       close_time: true,
       phone: true,
+      cuisineStyle: true,
       location: { select: { name: true } },
       cuisine: { select: { name: true } },
     },

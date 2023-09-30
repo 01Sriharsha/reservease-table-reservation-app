@@ -18,7 +18,7 @@ export default function BusinessRequestForm() {
     address: "",
     city: "",
     phone: "",
-    gst: "",
+    rrn: "",
   });
 
   const handleChange = (
@@ -31,7 +31,7 @@ export default function BusinessRequestForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (input.gst.length !== 15) {
+    if (input.rrn.length !== 15) {
       toast.error("GST.No should be 15 characters only!!", TOAST_PROP);
       return;
     }
@@ -59,7 +59,7 @@ export default function BusinessRequestForm() {
   };
 
   const handleReset = () =>
-    setInput({ name: "", city: "", gst: "", phone: "", address: "" });
+    setInput({ name: "", city: "", rrn: "", phone: "", address: "" });
 
   return (
     <div ref={ref} className="flex justify-center items-center p-5">
@@ -94,14 +94,15 @@ export default function BusinessRequestForm() {
           </div>
 
           <div>
-            <label htmlFor="gst">
-              Restaurant GST.No <span className="text-red-500">*</span>
+            <label htmlFor="rrn">
+              Restaurant Registration Number(RRN){" "}
+              <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              name="gst"
-              id="gst"
-              value={input.gst}
+              name="rrn"
+              id="rrn"
+              value={input.rrn}
               onChange={handleChange}
               className="w-full p-2 border border-neutral-400 focus:border-black hover:border-black focus:outline-none my-3 transition rounded-md"
               required

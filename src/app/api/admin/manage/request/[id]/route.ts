@@ -118,7 +118,7 @@ export async function POST(
       data: {
         name: request.restaurant_name,
         address: request.restaurant_address,
-        gst: request.restaurant_gst,
+        rrn: request.restaurant_rrn,
         location_id: city_id,
         phone: request.restaurant_phone,
         ownerId: user.id,

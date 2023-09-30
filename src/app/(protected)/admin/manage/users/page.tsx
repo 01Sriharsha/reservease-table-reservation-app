@@ -25,7 +25,7 @@ export default async function ManageUsersPage() {
   }
 
   return (
-    <div className="w-full p-2 overflow-y-auto h-full">
+    <div className="w-full p-2 overflow-y-auto ">
       <h1 className="text-3xl text-slate-800 font-semibold my-2">
         Manage Users:{" "}
       </h1>

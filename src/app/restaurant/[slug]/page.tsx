@@ -8,7 +8,7 @@ import UserReviewForm from "./components/UserReviewForm";
 import prisma from "@/lib/PrismaClient";
 import { Metadata } from "next";
 import { FaLocationDot } from "react-icons/fa6";
-
+import img from "../../../assets/img-placehoder.png";
 interface RestaurantPageProps {
   params: {
     slug: string;
@@ -27,6 +27,7 @@ const fetchRestaurantBySlug = async (slug: string) => {
       images: true,
       location: true,
       cuisine: true,
+      cuisineStyle: true,
       description: true,
       open_time: true,
       close_time: true,
@@ -60,7 +61,7 @@ export default async function RestaurantDetails({
     <>
       <header className="h-1/2 md:h-[32rem] w-full">
         <Image
-          src={restaurant.main_image}
+          src={restaurant.main_image || img}
           alt={"restaurant"}
           height={2000}
           width={2000}
@@ -91,6 +92,14 @@ export default async function RestaurantDetails({
               <FaLocationDot color="red" />
               <span>
                 {restaurant.address}, {restaurant.location.name}
+              </span>
+            </p>
+
+            {/* Cuisine */}
+            <p className="my-3 flex items-center gap-1 capitalize pl-1">
+              <span className="font-medium">Cuisine: </span>
+              <span>
+                {restaurant.cuisine.name + " • " + restaurant.cuisineStyle}
               </span>
             </p>
 

@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import { TOAST_PROP } from "@/context/Provider";
 import InputElement from "./formComponents/InputElement";
 import SelectElement from "./formComponents/SelectElement";
+import Link from "next/link";
+import PublishRestaurant from "@/app/(protected)/admin/manage/_components/PublishRestaurant";
 
 interface RestaurantDetailsFormProps {
   restaurant: {
@@ -23,6 +25,8 @@ interface RestaurantDetailsFormProps {
     address: string;
     phone: string;
     price: PRICE;
+    cuisineStyle: string;
+    publish: boolean;
     location: {
       name: string;
     };
@@ -51,6 +55,7 @@ export default function RestaurantDetailsForm({
     close_time: "",
     cuisine: "",
     price: "",
+    cuisineStyle: "",
   });
 
   const [image, setImage] = useState("");
@@ -69,6 +74,7 @@ export default function RestaurantDetailsForm({
       phone,
       address,
       price,
+      cuisineStyle,
     } = restaurant;
 
     const openTime =
@@ -89,6 +95,7 @@ export default function RestaurantDetailsForm({
       close_time: closeTime,
       city: location.name,
       cuisine: cuisine.name,
+      cuisineStyle,
     }));
     setImage(main_image);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -209,6 +216,18 @@ export default function RestaurantDetailsForm({
             handleChange={handleChange}
             array={cuisines}
           />
+
+          <SelectElement
+            name="cuisineStyle"
+            value={input.cuisineStyle}
+            handleChange={handleChange}
+            array={[
+              { name: "vegetarian" },
+              { name: "non-vegetarian" },
+              { name: "seafood" },
+              { name: "flexitarian" },
+            ]}
+          />
           <SelectElement
             name="price"
             value={input.price}
@@ -275,7 +294,7 @@ export default function RestaurantDetailsForm({
 
         <button
           type="submit"
-          className="px-4 py-2 bg-slate-800 text-white hover:bg-white hover:border-black border hover:text-slate-700 transition"
+          className="px-4 py-2 mb-3 bg-slate-800 text-white hover:bg-white hover:border-black border hover:text-slate-700 transition"
         >
           Save
         </button>

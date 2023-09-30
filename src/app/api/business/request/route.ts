@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 interface RequestData {
   name: string;
-  gst: string;
+  rrn: string;
   city: string;
   address: string;
   phone: string;
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   const body: RequestData = await req.json();
 
-  const { name, gst, city, address, phone, email } = body;
+  const { name, rrn, city, address, phone, email } = body;
 
   const obj = validateObject(body);
 
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  if (gst.length !== 15) {
+  if (rrn.length !== 15) {
     return NextResponse.json(
       { error: `GST.No should be 15 characters only!!` },
       { status: 400 }
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
       restaurant_city: city,
       restaurant_address: address,
       restaurant_phone: phone,
-      restaurant_gst: gst,
+      restaurant_rrn: rrn,
       userId: user.id,
     },
   });

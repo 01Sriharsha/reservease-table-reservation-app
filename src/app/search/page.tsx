@@ -16,6 +16,7 @@ export interface SearchRestaurantCard {
   main_image: string;
   slug: string;
   reviews: Review[];
+  publish: boolean;
 }
 
 export interface SerachParamsType {
@@ -28,7 +29,7 @@ const fetchRestaurantsByParams = async ({
   city,
   cuisine,
   price,
-}: SerachParamsType): Promise<SearchRestaurantCard[]> => {
+}: SerachParamsType) => {
   const select = {
     id: true,
     name: true,
@@ -36,6 +37,7 @@ const fetchRestaurantsByParams = async ({
     main_image: true,
     slug: true,
     reviews: true,
+    publish: true,
   };
 
   if (!city) return await prisma.restaurant.findMany({ select: select });
@@ -112,17 +114,19 @@ export default async function SearchPage({
                 No restuarants available!!
               </div>
             ) : (
-              restaurants.map((restaurant) => (
-                <>
-                  <Link
-                    href={`/restaurant/${restaurant.slug}`}
-                    key={restaurant.id}
-                  >
-                    <RestaurantCard restaurant={restaurant} />
-                  </Link>
-                  <hr className="text-gray-700 font-extrabold" />
-                </>
-              ))
+              restaurants
+                .filter((restaurant) => restaurant.publish)
+                .map((restaurant) => (
+                  <>
+                    <Link
+                      href={`/restaurant/${restaurant.slug}`}
+                      key={restaurant.id}
+                    >
+                      <RestaurantCard restaurant={restaurant} />
+                    </Link>
+                    <hr className="text-gray-700 font-extrabold" />
+                  </>
+                ))
             )}
           </div>
         </div>

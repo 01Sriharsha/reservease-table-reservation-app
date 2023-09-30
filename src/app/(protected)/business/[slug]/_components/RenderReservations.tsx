@@ -19,7 +19,6 @@ export default function RenderReservations({
   const [bookings, setBookings] = useState(AllBookings);
 
   const [refno, setRefno] = useState("");
-  const [changing, setChanging] = useState(false);
 
   useEffect(() => {
     const newArr = bookings.filter((b) =>

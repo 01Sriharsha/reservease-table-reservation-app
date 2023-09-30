@@ -80,10 +80,10 @@ export default function RenderBusinessRequests({
                   <span>{request.restaurant_name}</span>
                 </p>
                 <p className="flex gap-2 items-center capitalize">
-                  <span className="font-medium">Restaurant GST.No: </span>
-                  <span>{request.restaurant_gst}</span>[
+                  <span className="font-medium">Restaurant RRN: </span>
+                  <span>{request.restaurant_rrn}</span>[
                   <Link
-                    href="https://services.gst.gov.in/services/searchtp"
+                    href="https://services.rrn.gov.in/services/searchtp"
                     target="_blank"
                     className="flex gap-1 items-center hover:text-red-300"
                   >
