@@ -83,32 +83,33 @@ model Review {
 }
 
 model Restaurant {
-  id          Int       @id @default(autoincrement())
-  name        String
-  main_image  String
-  description String
-  images      String[]
-  open_time   String
-  close_time  String
-  phone       String    @default("")
-  address     String    @default("")
-  slug        String    @unique
-  price       PRICE
-  gst         String    @default("")
-  publish     Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id           Int       @id @default(autoincrement())
+  name         String
+  main_image   String
+  description  String
+  images       String[]
+  open_time    String
+  close_time   String
+  phone        String    @default("")
+  address      String    @default("")
+  slug         String    @unique
+  price        PRICE
+  cuisineStyle String    @default("vegetarian")
+  rrn          String    @default("")
+  publish      Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   //relations
-  location_id Int
-  location    Location  @relation(fields: [location_id], references: [id])
-  cuisine_id  Int
-  cuisine     Cuisine   @relation(fields: [cuisine_id], references: [id])
-  items       Item[]
-  reviews     Review[]
-  bookings    Booking[]
-  tables      Table[]
-  ownerId     Int       @unique @default(dbgenerated())
-  owner       User      @relation(fields: [ownerId], references: [id])
+  location_id  Int
+  location     Location  @relation(fields: [location_id], references: [id])
+  cuisine_id   Int
+  cuisine      Cuisine   @relation(fields: [cuisine_id], references: [id])
+  items        Item[]
+  reviews      Review[]
+  bookings     Booking[]
+  tables       Table[]
+  ownerId      Int       @unique @default(dbgenerated())
+  owner        User      @relation(fields: [ownerId], references: [id])
 }
 
 model Item {
@@ -184,7 +185,7 @@ model BusinessRequest {
   restaurant_address String @default("")
   restaurant_phone   String @default("")
   status             STATUS @default(PENDING)
-  restaurant_gst     String
+  restaurant_rrn     String
   userId             Int    @unique
   user               User   @relation(fields: [userId], references: [id])
 }
