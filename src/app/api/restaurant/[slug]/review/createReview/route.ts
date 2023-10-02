@@ -76,9 +76,10 @@ export async function POST(req: NextRequest, { params }: {params : {slug : strin
       id: true,
       message: true,
       rating: true,
+      dine_date : true,
       user_id: true,
       restaurant_id: true,
-      user: { select: { first_name: true, last_name: true } },
+      user: { select: { first_name: true, last_name: true , id:true } },
     },
   });
 

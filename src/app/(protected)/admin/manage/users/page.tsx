@@ -1,5 +1,5 @@
 import prisma from "@/lib/PrismaClient";
-import React from "react";
+import React, { Suspense } from "react";
 import RenderUsers from "../_components/RenderUsers";
 
 export default async function ManageUsersPage() {
@@ -29,7 +29,9 @@ export default async function ManageUsersPage() {
       <h1 className="text-3xl text-slate-800 font-semibold my-2">
         Manage Users:{" "}
       </h1>
-      <RenderUsers users={users} />
+      <Suspense fallback={<h2>Fallback</h2>}>
+        <RenderUsers users={users} />
+      </Suspense>
     </div>
   );
 }

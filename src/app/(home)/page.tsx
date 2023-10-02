@@ -43,7 +43,9 @@ export default async function Home() {
                   key={restaurant.id}
                   className="hover:scale-105 transition-all duration-300 ease-linear"
                 >
-                  <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+                  <Suspense key={restaurant.id} fallback={<h2>Fallback</h2>}>
+                    <RestaurantCard restaurant={restaurant} />
+                  </Suspense>
                 </Link>
               ))
           ) : (

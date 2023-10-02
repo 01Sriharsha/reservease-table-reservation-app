@@ -10,6 +10,7 @@ export default async function AdminManagePage() {
   const users = await prisma.user.findMany({
     select: { first_name: true, last_name: true },
   });
+
   return (
     <div className="bg-gray-100 p-4">
       <div className="max-w-5xl mx-auto">

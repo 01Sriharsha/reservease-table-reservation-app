@@ -19,12 +19,12 @@ export default function UserReviewForm({
 }) {
   const ref = useRef<HTMLInputElement>(null);
 
-  const [reviews, setReviews] = useState<ReviewCardType[]>(userReviews);
+  const [reviews, setReviews] = useState(userReviews);
 
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState("");
   const [dineDate, setDinedate] = useState("");
-  
+
   const { data } = useAuth();
 
   function renderStars() {
@@ -61,13 +61,17 @@ export default function UserReviewForm({
       return;
     }
     const dine_date = calculateDinedate(dineDate);
-    apiClient
-      .post(`/restaurant/${slug}/review/createReview`, {
-        user_id: data?.id,
-        message,
-        rating,
-        dine_date,
-      })
+    toast
+      .promise(
+        apiClient.post(`/restaurant/${slug}/review/createReview`, {
+          user_id: data?.id,
+          message,
+          rating,
+          dine_date,
+        }),
+        { pending: "Posting...." },
+        TOAST_PROP
+      )
       .then((res) => {
         setMessage("");
         setRating(0);
@@ -86,8 +90,12 @@ export default function UserReviewForm({
   };
 
   const handleDeleteReview = (id: number) => {
-    apiClient
-      .delete(`/restaurant/${slug}/review/deleteReview/${id}`)
+    toast
+      .promise(
+        apiClient.delete(`/restaurant/${slug}/review/deleteReview/${id}`),
+        { pending: "Deleting..." },
+        TOAST_PROP
+      )
       .then((res) => {
         toast.success("Review deleted successfully!!", TOAST_PROP);
         setReviews((prev) => prev.filter((e) => e.id !== id));

@@ -1,5 +1,5 @@
 import prisma from "@/lib/PrismaClient";
-import React from "react";
+import React, { Suspense } from "react";
 import RenderRestaurants from "../_components/RenderRestaurants";
 
 export default async function ManageRestaurants() {
@@ -19,7 +19,9 @@ export default async function ManageRestaurants() {
       <h1 className="my-3 text-slate-800 font-semibold text-3xl px-1">
         Manage restaurants:{" "}
       </h1>
-      <RenderRestaurants restaurants={restaurants} />
+      <Suspense fallback={<h2>Fallback</h2>}>
+        <RenderRestaurants restaurants={restaurants} />
+      </Suspense>
     </div>
   );
 }

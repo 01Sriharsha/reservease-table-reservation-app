@@ -8,6 +8,7 @@ import { HiOutlineReply } from "react-icons/hi";
 import { ROLE } from "@prisma/client";
 import ReplyModal from "@/app/(protected)/business/[slug]/_components/ReplyModal";
 import { describeRating } from "@/utils/describeRating";
+import { usePathname } from "next/navigation";
 
 export interface ReviewCardType {
   id: number;
@@ -33,6 +34,8 @@ export default function ReviewCard({
   slug,
 }: ReviewCardProps) {
   const { data } = useAuth();
+
+  const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
 
@@ -67,7 +70,7 @@ export default function ReviewCard({
                   onClick={() => handleDeleteReview(review.id)}
                 />
               )}
-              {data?.role === ROLE.OWNER && (
+              {pathname.includes("/business") && data?.role === ROLE.OWNER && (
                 <>
                   <HiOutlineReply
                     size={"1rem"}

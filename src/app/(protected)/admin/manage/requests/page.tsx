@@ -1,5 +1,5 @@
 import prisma from "@/lib/PrismaClient";
-import React from "react";
+import React, { Suspense } from "react";
 import RenderBusinessRequests from "../_components/RenderBusinessRequests";
 
 export default async function ManageBusinessRequests() {
@@ -23,7 +23,9 @@ export default async function ManageBusinessRequests() {
       <h1 className="text-3xl text-slate-800 font-semibold my-2">
         Manage Requests
       </h1>
-      <RenderBusinessRequests requests={requests} />
+      <Suspense fallback={<h2>Fallback</h2>}>
+        <RenderBusinessRequests requests={requests} />
+      </Suspense>
     </div>
   );
 }
