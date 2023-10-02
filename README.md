@@ -1,6 +1,6 @@
-# DineTable - Table Reservation Management System
+# Reservease - Table Reservation Management System
 
-DineTable is a full-stack table reservation management system built upon Next.js 13, React, PostgreSQL, and Prisma. This application facilitates table reservations for restaurants and provides user roles for customers, restaurant owners, and administrators.
+Reservease is a full-stack table reservation management system built upon Next.js 13, React, PostgreSQL, and Prisma. This application facilitates table reservations for restaurants and provides user roles for customers, restaurant owners, and administrators.
 
 ## Table of Contents
 
@@ -12,7 +12,7 @@ DineTable is a full-stack table reservation management system built upon Next.js
 
 ## Features
 
-DineTable offers the following key features:
+Reservease offers the following key features:
 
 ### User Roles
 
@@ -41,7 +41,7 @@ Secure user authentication system for all user roles.
 
 ## Technologies Used
 
-DineTable is built using the following technologies:
+Reservease is built using the following technologies:
 
 - [Next.js 13](https://nextjs.org/): A React framework for server-rendered React applications.
 - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
@@ -52,15 +52,15 @@ DineTable is built using the following technologies:
 
 ## Installation
 
-To run DineTable locally, follow these steps:
+To run Reservease locally, follow these steps:
 
 1. **Clone the repository:**
 
-   `git clone https://github.com/your-username/dinetable.git`
+   `git clone https://github.com/your-username/Reservease.git`
 
 2. **Navigate to the project directory:**
 
-   `cd dinetable`
+   `cd Reservease`
 
 3. **Install the project dependencies:**
 
@@ -80,7 +80,7 @@ To run DineTable locally, follow these steps:
 
 ## Usage
 
-DineTable is designed to serve three primary user roles: Customers, Restaurant Owners, and Admins.
+Reservease is designed to serve three primary user roles: Customers, Restaurant Owners, and Admins.
 
 ### Customer Role
 
@@ -137,4 +137,4 @@ DineTable is designed to serve three primary user roles: Customers, Restaurant O
 
 ## Deployment
 
-DineTable is deployed on Vercel and uses NeonDB's Postgresql database for production.
+Reservease is deployed on Vercel and uses NeonDB's Postgresql database for production.
